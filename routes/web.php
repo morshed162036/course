@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\SingleController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,15 +58,20 @@ use App\Http\Controllers\ResourceController;
 //     return view('about');
 // });
 
-//3 types of Controller 
+//👍 3 types of Controller 
 
 // Basic controller
 // 2 type syntex
-Route::get('/',[DemoController::class,'index']);
-Route::get('/about','App\Http\Controllers\DemoController@about');
+// Route::get('/',[DemoController::class,'index']);
+// Route::get('/about','App\Http\Controllers\DemoController@about');
 
-// SingleAction controller
-Route::get('/contact', SingleController::class); //it's only use for single function or action.
+// // SingleAction controller
+// Route::get('/contact', SingleController::class); //it's only use for single function or action.
 
-//Resource controller
-Route::resource('/user', ResourceController::class);
+// //Resource controller
+// Route::resource('/user', ResourceController::class);
+
+//👍 form controller
+
+Route::get('/register',[RegistrationController::class,'index']);
+Route::post('/register',[RegistrationController::class,'register']);
