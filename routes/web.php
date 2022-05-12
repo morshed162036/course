@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\SingleController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegistrationController;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +77,17 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/register',[RegistrationController::class,'index']);
 Route::post('/register',[RegistrationController::class,'register']);
+
+// model
+// Route::get("/customer",function(){
+//     $customers = Customer::all();
+//     echo "<pre>";
+//     print_r($customers->toArray());
+// });
+Route::get('/customer/create', [CustomerController::class,"index"]);
+Route::post('/customer/store', [CustomerController::class,"store"]);
+Route::get('/customer', [CustomerController::class,"view"]);
+
+Route::get("/",function(){
+    return view('index');
+});
