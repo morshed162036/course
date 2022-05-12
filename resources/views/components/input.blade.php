@@ -11,11 +11,11 @@
 <div class="form-group">
         <label for="">{{ $label }}</label>
         <input type="{{ $type }}" name="{{ $name }}" id="" class="form-control"/> 
-        <span class="text-danger">
+        {{-- <span class="text-danger">
             {{ $demo }}
             {{-- @error('{{ $name }}')
                 {{ $message }}
-            @enderror --}}
-        </span>
+            @enderror --}
+        </span> --}}
         {{-- <small id="helpId" class="text-muted">Help Text</small> --}}
 </div>
