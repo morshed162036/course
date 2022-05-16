@@ -18,23 +18,24 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="{{ url('') }}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ url('/register') }}">Register</a>
+      <a class="nav-item nav-link" href="{{ url('/customer/create') }}">Register</a>
       <a class="nav-item nav-link" href="{{ url('/customer') }}">Customer</a>
       {{-- <a class="nav-item nav-link disabled" href="#">Disabled</a> --}}
     </div>
   </div>
       </nav>
       {{-- <div class="container"> --}}
-          <form action="{{ url("/") }}/customer" method="post">
+          {{-- <form action="{{ url("/") }}/customer/store" method="post"> --}}
+          <form action="{{$url}}" method="post">
             @csrf
             <div class="container mt-4 card p-3 bg-white">
                 <h3 class="text-center text-primary">
-                    Customer Registration
+                    {{ $title }}
                 </h3>
                 <div class="row">
                     <div class="required form-group col-md-6">
                         <label for="">Name:</label>
-                        <input type="text" name="name" id="" class="form-controll">
+                        <input type="text" name="name" id="" class="form-controll" value="{{ $customer->name }}">
                         <span class="text-danger">
                             @error("name")
                                 {{ $message }}
@@ -43,7 +44,7 @@
                     </div>
                     <div class="required form-group col-md-6">
                         <label for="">Email:</label>
-                        <input type="email" name="email" id="" class="form-controll">
+                        <input type="email" name="email" id="" class="form-controll" value="{{ $customer->email }}">
                             <span class="text-danger">
                             @error("email")
                                 {{ $message }}
@@ -74,7 +75,7 @@
                 <div class="row">
                         <div class="required form-group col-md-6">
                             <label for="">State:</label>
-                            <input type="text" name="state" id="" class="form-controll">
+                            <input type="text" name="state" id="" class="form-controll" value="{{ $customer->state }}">
                             <span class="text-danger">
                                 @error("state")
                                     {{ $message }}
@@ -82,8 +83,8 @@
                             </span>
                         </div>
                         <div class="required form-group col-md-6">
-                            <label for="">City:</label>
-                            <input type="text" name="city" id="" class="form-controll">
+                            <label for="">Country:</label>
+                            <input type="text" name="city" id="" class="form-controll" value="{{ $customer->country }}">
                                 <span class="text-danger">
                                 @error("city")
                                     {{ $message }}
@@ -93,30 +94,35 @@
                 <div class="row">
                      <div class="required form-group col-md-6">
                             <label for="">Address:</label>
-                            <textarea name="address" id="" cols="100" rows="3"></textarea>
+                            <textarea name="address" id="" cols="100" rows="3" >{{ $customer->address }}</textarea>
                      </div>
                 </div>
                 <div class="row">
                   <div class="required form-group col-md-6">
                     <label for="">Gender:</label>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="M"/>
+                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="M" 
+                    {{ $customer->gender == "M" ? "checked" : ""}}/>
                     <label class="form-check-label" for="flexRadioDefault1"> M </label>
                     </div>
                     <div class="form-check form-check-inline">
 
-                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="F"/>
+                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="F"
+                     {{ $customer->gender == "F" ? "checked" : ""}}/>
                      <label  class="form-check-label" for="flexRadioDefault2"> F </label>
                     </div>
                     <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault3" value="O"/>
+                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault3" value="O"
+                     {{ $customer->gender == "O" ? "checked" : ""}}/>
                      <label class="form-check-label" for="flexRadioDefault3"> O </label>
                     </div>
                   </div>
                   <div class="required form-group col-md-6">
                       <label for="">Date of Birth</label>
-                      <input class="form-controll" type="date" name="dob" id="">
+                      <input class="form-controll" type="date" name="dob" id="" value="{{ $customer->dob }}">
                   </div>
+                </div>
+                <div class="row">
                   <button class="btn btn-primary" type="submit">submit</button>
                 </div>
 

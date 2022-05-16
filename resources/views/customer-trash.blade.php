@@ -40,8 +40,7 @@
       </nav>
     <div class="container">
       {{-- <a href="{{ url('/') }}/customer/create"><button class="btn btn-primary">Add</button></a> --}}
-      <a href="{{ route('customer.create') }}"><button class="btn btn-primary">Add</button></a>
-       <a href="{{ route('customer.trash') }}"><button class="btn btn-danger">Go to Trash</button></a>
+      <a href="{{url('/customer')}}"><button class="btn btn-primary">Customer list</button></a>
       
         <table class="table">
             <thead>
@@ -92,10 +91,10 @@
                       {{-- <a href="{{ url('customer/delete') }}/{{ $customer->customer_id }}">
                         <button class="btn btn-danger">Delete</button>
                       </a> --}}
-                      <a href="{{ route('customer.delete',['id'=> $customer->customer_id ])}}">
-                        <button class="btn btn-danger">Trash</button>
+                      <a href="{{ route('customer.forceDelete',['id'=> $customer->customer_id ])}}">
+                        <button class="btn btn-danger">Delete</button>
                       </a>
-                      <a href="{{ route('customer.edit',['id'=> $customer->customer_id ])}}"><button class="btn btn-primary">Edit</button></a>
+                      <a href="{{ route('customer.restore',['id'=> $customer->customer_id ])}}"><button class="btn btn-primary">Restore</button></a>
                     </td>
                 </tr>
                 @endforeach

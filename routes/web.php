@@ -7,6 +7,7 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,10 +85,46 @@ Route::post('/register',[RegistrationController::class,'register']);
 //     echo "<pre>";
 //     print_r($customers->toArray());
 // });
-Route::get('/customer/create', [CustomerController::class,"index"]);
+Route::get('/customer/create', [CustomerController::class,"index"])->name('customer.create');
 Route::post('/customer/store', [CustomerController::class,"store"]);
 Route::get('/customer', [CustomerController::class,"view"]);
+Route::get('/customer/delete/{id}', [CustomerController::class,'delete'])->name('customer.delete');
+Route::get('/customer/edit/{id}', [CustomerController::class,'edit'])->name('customer.edit');
+Route::post('/customer/update/{id}', [CustomerController::class,'update'])->name('customer.update');
+
+//Softdelete
+
+Route::get('/customer/trash', [CustomerController::class,"trash"])->name('customer.trash');
+
+Route::get('/customer/forceDelete/{id}', [CustomerController::class,'forceDelete'])->name('customer.forceDelete');
+Route::get('/customer/restore/{id}', [CustomerController::class,'restore'])->name('customer.restore');
 
 Route::get("/",function(){
     return view('index');
+});
+
+// session
+
+Route::get('get-all-session',function(){
+    $session = session()->all();
+    p($session);
+});
+
+// Route::get('set-session', function(){
+//     session()->put('user_name','morshed');
+//     return redirect('get-all-session');
+// });
+Route::get('set-session', function(Request $request){
+    $request->session()->put('user_name','morshed');
+    $request->session()->put('user_id','123');
+    $request->session()->flash('status','Success');
+    
+    return redirect('get-all-session');
+});
+
+Route::get('distroy-session',function(){
+    session()->forget(['user_name','user_id']);
+    //session()->forget('user_id');
+    return redirect('get-all-session');
+
 });

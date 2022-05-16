@@ -18,7 +18,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="{{ url('') }}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ url('/register') }}">Register</a>
+      <a class="nav-item nav-link" href="{{ url('/customer/create') }}">Register</a>
       <a class="nav-item nav-link" href="{{ url('/customer') }}">Customer</a>
       {{-- <a class="nav-item nav-link disabled" href="#">Disabled</a> --}}
     </div>
